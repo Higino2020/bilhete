@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('horarios', function (Blueprint $table) {
             $table->id();
+            $table->time("hora");
+            $table->string('local')->nullable();
+            $table->string('descricao')->nullable();
+            $table->foreignId('rota')->constrained('rotas')->onDelete('cascade');
             $table->timestamps();
         });
     }

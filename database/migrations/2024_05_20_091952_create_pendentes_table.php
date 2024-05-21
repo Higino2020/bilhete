@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('pendentes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('bilhete_id')->constrained('bilhetes')->onDelete('cascade');
+            $table->string('estado');
+            $table->string('motivo')->nullable();
             $table->timestamps();
         });
     }

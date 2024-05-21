@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('rotas', function (Blueprint $table) {
             $table->id();
+            $table->string('partida');
+            $table->string('destino');
+            $table->float('preco',9,2);
             $table->timestamps();
         });
     }

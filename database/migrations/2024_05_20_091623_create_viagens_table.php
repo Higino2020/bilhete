@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('viagens', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('moto1_id')->constrained('motoristas')->onDelete('cascade');
+            $table->foreignId('moto2_id')->constrained('motoristas')->onDelete('cascade');
+            $table->foreignId('carro_id')->constrained('carros')->onDelete('cascade');
+            $table->foreignId('horario_id')->constrained('horarios')->onDelete('cascade');
+            $table->string('descricao')->nullable();
             $table->timestamps();
         });
     }
