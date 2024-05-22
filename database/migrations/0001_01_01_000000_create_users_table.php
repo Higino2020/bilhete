@@ -36,7 +36,7 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-        App\Models\User::created([
+        App\Models\User::create([
             'name' => 'Administrador',
             'email' => 'geral@gmail.com',
             'tipo'  => 'Admin',
