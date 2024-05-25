@@ -13,6 +13,8 @@ class MotoristaController extends Controller
     public function index()
     {
         //
+        $valor=Motorista::with(['nome','provincia','municipio','contacto','data_nascimento'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,14 +31,31 @@ class MotoristaController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Motorista::find($request->id);
+        } else {
+            # code...
+            $valor= new Motorista();
+        }
+        $valor->nome=$request->nome;
+        $valor->provincia=$request->provincia;
+        $valor->municipio=$request->municipio;
+        $valor->contacto=$request->contacto;
+        $valor->data_nascimento=$request->data_nascimento;
+        $valor->save();
+        return response()->json($valor,200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Motorista $motorista)
+    public function show( $id)
     {
         //
+        $valor=Motorista::with(['nome','provincia','municipio','contacto','data_nascimento'])->find($id);
+        return response()->json($valor,200);
     }
 
     /**
@@ -48,18 +67,12 @@ class MotoristaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Motorista $motorista)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Motorista $motorista)
+    public function destroy( $id)
     {
         //
+        Motorista::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }

@@ -13,6 +13,9 @@ class BilheteController extends Controller
     public function index()
     {
         //
+        $valor=Bilhete::with(['cliente_id','funcionario_id','viagen_id','estado','descricao',
+        'acento'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,37 +32,42 @@ class BilheteController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Bilhete::find($request->id);
+        } else {
+            # code...
+            $valor= new Bilhete();
+        }
+        $valor->cliente_id=$request->cliente_id;
+        $valor->funcionario_id=$request->funcionario_id;
+        $valor->viagen_id=$request->viagen_id;
+        $valor->estado=$request->estado;
+        $valor->descricao=$request->descricao;
+        $valor->acento=$request->acento;
+        $valor->save();
+        return response()->json($valor,200);
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Bilhete $bilhete)
+    public function show( $id)
     {
         //
+        $valor=Bilhete::with(['cliente_id','funcionario_id','viagen_id','estado','descricao',
+        'acento'])->find($id);
+        return response()->json($valor,200);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Bilhete $bilhete)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Bilhete $bilhete)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bilhete $bilhete)
+    public function destroy( $id)
     {
         //
+        Bilhete::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }

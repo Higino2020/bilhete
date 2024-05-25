@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pendente;
 use App\Models\Rota;
 use Illuminate\Http\Request;
 
 class RotaController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $valor=Rota::with(['partida','destino','preco'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,37 +24,37 @@ class RotaController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Rota::find($request->id);
+        } else {
+            # code...
+            $valor= new Rota();
+        }
+        $valor->partida=$request->partida;
+        $valor->destino=$request->destino;
+        $valor->preco=$request->preco;
+        $valor->save();
+        return response()->json($valor,200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Rota $rota)
+    public function show($id)
     {
         //
+        $valor=Pendente::with(['partida','destino','preco'])->find($id);
+        return response()->json($valor,200);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Rota $rota)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Rota $rota)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rota $rota)
+    public function destroy($id)
     {
         //
+        Pendente::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }

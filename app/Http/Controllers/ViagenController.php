@@ -7,20 +7,14 @@ use Illuminate\Http\Request;
 
 class ViagenController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $valor=Viagen::with(['moto1_id','moto2_id','carro_id','horario_id','descricao'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,37 +23,39 @@ class ViagenController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Viagen::find($request->id);
+        } else {
+            # code...
+            $valor= new Viagen();
+        }
+        $valor->moto1_id=$request->moto1_id;
+        $valor->moto2_id=$request->moto2_id;
+        $valor->carro_id=$request->carro_id;
+        $valor->horario_id=$request->horario_id;
+        $valor->descricao=$request->descricao;
+        $valor->save();
+        return response()->json($valor,200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Viagen $viagen)
+    public function show($id)
     {
         //
+        $valor=Viagen::with(['moto1_id','moto2_id','carro_id','horario_id','descricao'])->find($id);
+        return response()->json($valor,200);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Viagen $viagen)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Viagen $viagen)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Viagen $viagen)
+    public function destroy($id)
     {
         //
+        Viagen::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }

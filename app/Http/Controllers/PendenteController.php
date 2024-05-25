@@ -13,6 +13,8 @@ class PendenteController extends Controller
     public function index()
     {
         //
+        $valor=Pendente::with(['bilhete_id','estado','motivo'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,37 +31,37 @@ class PendenteController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Pendente::find($request->id);
+        } else {
+            # code...
+            $valor= new Pendente();
+        }
+        $valor->bilhete_id=$request->bilhete_id;
+        $valor->estado=$request->estado;
+        $valor->motivo=$request->motivo;
+        $valor->save();
+        return response()->json($valor,200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Pendente $pendente)
+    public function show($id)
     {
         //
+        $valor=Pendente::with(['nome','genero','data_nascimento'])->find($id);
+        return response()->json($valor,200);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pendente $pendente)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pendente $pendente)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pendente $pendente)
+    public function destroy($id)
     {
         //
+        Pendente::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }

@@ -13,6 +13,8 @@ class HorarioController extends Controller
     public function index()
     {
         //
+        $valor=Horario::with(['hora','local','descricao','rota'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,14 +31,30 @@ class HorarioController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor=Horario::find($request->id);
+        } else {
+            # code...
+            $valor=new Horario();
+        }
+        $valor->hora=$request->hora;
+        $valor->local=$request->local;
+        $valor->descricao=$request->descricao;
+        $valor->rota=$request->rota;
+        $valor->save();
+        return response()->json($valor,200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Horario $horario)
+    public function show( $id)
     {
         //
+        $valor=Horario::with(['hora','local','descricao','rota'])->find($id);
+        return response()->json($valor,200);
     }
 
     /**
@@ -46,20 +64,13 @@ class HorarioController extends Controller
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Horario $horario)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Horario $horario)
+    public function destroy( $id)
     {
         //
+        Horario::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }

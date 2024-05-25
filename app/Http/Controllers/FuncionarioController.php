@@ -13,14 +13,8 @@ class FuncionarioController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $valor=Funcionario::with(['nome','genero','data_nascimento'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,37 +23,37 @@ class FuncionarioController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Funcionario::find($request->id);
+        } else {
+            # code...
+            $valor= new Funcionario();
+        }
+        $valor->nome=$request->nome;
+        $valor->genero=$request->genero;
+        $valor->data_nascimento=$request->data_nascimento;
+        $valor->save();
+        return response()->json($valor,200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Funcionario $funcionario)
+    public function show($id)
     {
         //
+        $valor=Funcionario::with(['nome','genero','data_nascimento'])->find($id);
+        return response()->json($valor,200);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Funcionario $funcionario)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Funcionario $funcionario)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Funcionario $funcionario)
+    public function destroy($id)
     {
         //
+        Funcionario::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }

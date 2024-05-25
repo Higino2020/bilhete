@@ -13,6 +13,8 @@ class CarroController extends Controller
     public function index()
     {
         //
+        $valor=Carro::with(['numero','matricula','lotacao'])->get();
+        return response()->json($valor,200);
     }
 
     /**
@@ -29,37 +31,38 @@ class CarroController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Carro::find($request->id);
+        } else {
+            # code...
+            $valor= new Carro();
+        }
+        $valor->numero=$request->numero;
+        $valor->matricula=$request->matricula;
+        $valor->lotacao=$request->lotacao;
+        $valor->save();
+        return response()->json($valor,200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Carro $carro)
+    public function show($id)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Carro $carro)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Carro $carro)
-    {
-        //
+        $valor=Carro::with(['numero','matricula','lotacao'])->find($id);
+        return response()->json($valor,200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Carro $carro)
+    public function destroy($id)
     {
         //
+        Carro::find($id)->delete();
+        return response()->json(['result'=>true],200);
     }
 }
