@@ -13,8 +13,9 @@ class CarroController extends Controller
     public function index()
     {
         //
-        $valor=Carro::with(['numero','matricula','lotacao'])->get();
-        return response()->json($valor,200);
+        $valor=Carro::all();
+        return view("pages.carro",compact("valor"));
+
     }
 
     /**
@@ -43,7 +44,7 @@ class CarroController extends Controller
         $valor->matricula=$request->matricula;
         $valor->lotacao=$request->lotacao;
         $valor->save();
-        return response()->json($valor,200);
+        return redirect()->back()->with("sucesso","Carro cadastrado com sucesso!");
     }
 
     /**
@@ -52,17 +53,17 @@ class CarroController extends Controller
     public function show($id)
     {
         //
-        $valor=Carro::with(['numero','matricula','lotacao'])->find($id);
-        return response()->json($valor,200);
+        $valor=Carro::find($id);
+        return view("pages.carro",compact("valor"));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function apagar($id)
     {
         //
         Carro::find($id)->delete();
-        return response()->json(['result'=>true],200);
+       return redirect()->back()->with("sucesso","carro apagado com sucesso");
     }
 }

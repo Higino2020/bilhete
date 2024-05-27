@@ -13,17 +13,10 @@ class MotoristaController extends Controller
     public function index()
     {
         //
-        $valor=Motorista::with(['nome','provincia','municipio','contacto','data_nascimento'])->get();
-        return response()->json($valor,200);
+        $valor=Motorista::all();
+        return view("pages.motorista",compact("valor"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -45,7 +38,7 @@ class MotoristaController extends Controller
         $valor->contacto=$request->contacto;
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
-        return response()->json($valor,200);
+        return redirect()->back()->with("sucesso","Motorista cadastrado com sucesso");
     }
 
     /**
@@ -54,25 +47,17 @@ class MotoristaController extends Controller
     public function show( $id)
     {
         //
-        $valor=Motorista::with(['nome','provincia','municipio','contacto','data_nascimento'])->find($id);
-        return response()->json($valor,200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Motorista $motorista)
-    {
-        //
+        $valor=Motorista::find($id);
+        return view("pages.motorista",compact("valor"));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function apagar( $id)
     {
         //
         Motorista::find($id)->delete();
-        return response()->json(['result'=>true],200);
+        return redirect()->back()->with("sucesso","Motorista acadastrado com sucesso");
     }
 }

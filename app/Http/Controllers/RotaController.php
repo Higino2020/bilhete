@@ -14,8 +14,8 @@ class RotaController extends Controller
     public function index()
     {
         //
-        $valor=Rota::with(['partida','destino','preco'])->get();
-        return response()->json($valor,200);
+        $valor=Rota::all();
+        return view("pages.rota",compact("valor"));
     }
 
     /**
@@ -36,7 +36,7 @@ class RotaController extends Controller
         $valor->destino=$request->destino;
         $valor->preco=$request->preco;
         $valor->save();
-        return response()->json($valor,200);
+        return redirect()->back()->with("sucesso","Roda cadastrado com sucesso");
     }
 
     /**
@@ -45,16 +45,16 @@ class RotaController extends Controller
     public function show($id)
     {
         //
-        $valor=Pendente::with(['partida','destino','preco'])->find($id);
-        return response()->json($valor,200);
+        $valor=Pendente::find($id);
+        return view("pages.rota",compact("valor"));
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function apagar($id)
     {
         //
         Pendente::find($id)->delete();
-        return response()->json(['result'=>true],200);
+        return redirect()->back()->with("sucesso","Rota pagado com sucesso");
     }
 }

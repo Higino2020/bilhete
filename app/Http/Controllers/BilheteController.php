@@ -13,9 +13,8 @@ class BilheteController extends Controller
     public function index()
     {
         //
-        $valor=Bilhete::with(['cliente_id','funcionario_id','viagen_id','estado','descricao',
-        'acento'])->get();
-        return response()->json($valor,200);
+        $valor=Bilhete::all();
+        return view("pages.bilhete",compact("valor"));
     }
 
     /**
@@ -47,7 +46,7 @@ class BilheteController extends Controller
         $valor->descricao=$request->descricao;
         $valor->acento=$request->acento;
         $valor->save();
-        return response()->json($valor,200);
+        return redirect()->back()->with("sucesso","Bilhete Cadastrado com sucesso");
 
     }
 
@@ -57,17 +56,16 @@ class BilheteController extends Controller
     public function show( $id)
     {
         //
-        $valor=Bilhete::with(['cliente_id','funcionario_id','viagen_id','estado','descricao',
-        'acento'])->find($id);
-        return response()->json($valor,200);
+        $valor=Bilhete::find($id);
+        return view("pages.bilhete",compact("valor"));
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function apagar( $id)
     {
         //
         Bilhete::find($id)->delete();
-        return response()->json(['result'=>true],200);
+        return redirect()->back()->with("sucesso","Bilhete Apagado com sucesso");
     }
 }

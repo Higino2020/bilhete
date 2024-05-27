@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use User as GlobalUser;
 
 class UserController extends Controller
 {
@@ -13,14 +14,8 @@ class UserController extends Controller
     public function index()
     {
         //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $valor=User::all();
+        return view("pages.user",compact("valor"));
     }
 
     /**
@@ -29,37 +24,39 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $valor=null;
+        if (isset($request->id)) {
+            # code...
+            $valor= User::find($request->id);
+        } else {
+            # code...
+            $valor= new User();
+        }
+        $valor->name=$request->name;
+        $valor->email=$request->email;
+        $valor->email_verified_at=$request->email_verified_at;
+        $valor->tipo=$request->tipo;
+        $valor->password=$request->password;
+        $valor->save();
+        return redirect()->back()->with("sucesso","user cadastrado com sucesso");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
+        $valor=User::find($id);
+        return view("pages.user",compact("valor"));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function apagar($id)
     {
         //
+        User::find($id)->delete();
+        return redirect()->back()->with("sucesso","user apagao com sucesso");
     }
 }

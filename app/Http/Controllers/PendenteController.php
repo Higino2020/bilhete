@@ -13,16 +13,8 @@ class PendenteController extends Controller
     public function index()
     {
         //
-        $valor=Pendente::with(['bilhete_id','estado','motivo'])->get();
-        return response()->json($valor,200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $valor=Pendente::all();
+        return view("pages.pendente",compact("valor"));
     }
 
     /**
@@ -43,7 +35,7 @@ class PendenteController extends Controller
         $valor->estado=$request->estado;
         $valor->motivo=$request->motivo;
         $valor->save();
-        return response()->json($valor,200);
+        return redirect()->back()->with("sucesso","BILHETE PENDENTE");
     }
 
     /**
@@ -52,16 +44,16 @@ class PendenteController extends Controller
     public function show($id)
     {
         //
-        $valor=Pendente::with(['nome','genero','data_nascimento'])->find($id);
-        return response()->json($valor,200);
+        $valor=Pendente::find($id);
+        return view("pages.pendente",compact("valor"));
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function apagar($id)
     {
         //
         Pendente::find($id)->delete();
-        return response()->json(['result'=>true],200);
+        return redirect()->back()->with("sucesso","BILHETE PENDENTE APAGADO COM SUCESSO");
     }
 }

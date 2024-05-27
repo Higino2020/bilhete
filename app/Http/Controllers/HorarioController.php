@@ -13,8 +13,8 @@ class HorarioController extends Controller
     public function index()
     {
         //
-        $valor=Horario::with(['hora','local','descricao','rota'])->get();
-        return response()->json($valor,200);
+        $valor=Horario::all();
+        return view("pages.horario",compact("valor"));
     }
 
     /**
@@ -44,7 +44,7 @@ class HorarioController extends Controller
         $valor->descricao=$request->descricao;
         $valor->rota=$request->rota;
         $valor->save();
-        return response()->json($valor,200);
+        return redirect()->back()->with("sucesso","Horario cadastrado com sucesso");
     }
 
     /**
@@ -53,24 +53,17 @@ class HorarioController extends Controller
     public function show( $id)
     {
         //
-        $valor=Horario::with(['hora','local','descricao','rota'])->find($id);
-        return response()->json($valor,200);
+        $valor=Horario::find($id);
+        return view("pages.horario",compact("valor"));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Horario $horario)
-    {
-        //
-    }
-    /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function apagar( $id)
     {
         //
         Horario::find($id)->delete();
-        return response()->json(['result'=>true],200);
+        return redirect()->back()->with("sucesso","Horario apagado com sucesso");
     }
 }

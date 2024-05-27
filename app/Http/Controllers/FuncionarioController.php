@@ -13,8 +13,8 @@ class FuncionarioController extends Controller
     public function index()
     {
         //
-        $valor=Funcionario::with(['nome','genero','data_nascimento'])->get();
-        return response()->json($valor,200);
+        $valor=Funcionario::all();
+        return view("pages.funcionario",compact("valor"));
     }
 
     /**
@@ -35,7 +35,7 @@ class FuncionarioController extends Controller
         $valor->genero=$request->genero;
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
-        return response()->json($valor,200);
+        return redirect()->back()->with("sucesso","Funcionario cadastrado com sucesso");
     }
 
     /**
@@ -44,16 +44,16 @@ class FuncionarioController extends Controller
     public function show($id)
     {
         //
-        $valor=Funcionario::with(['nome','genero','data_nascimento'])->find($id);
-        return response()->json($valor,200);
+        $valor=Funcionario::find($id);
+        return view("pages.funcionario",compact("valor"));
     }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function apagar($id)
     {
         //
         Funcionario::find($id)->delete();
-        return response()->json(['result'=>true],200);
+        return redirect()->back()->with("sucesso","Funcionario apagao com sucesso");
     }
 }

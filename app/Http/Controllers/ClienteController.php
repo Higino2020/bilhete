@@ -14,8 +14,8 @@ class ClienteController extends Controller
     public function index()
     {
         //
-        $valor=Cliente::with(['nome','nbi','telefone1','telefone2','data_nascimento'])->get();
-        return response()->json($valor,200);
+        $valor=Cliente::all();
+        return view("pages.Cliente",compact("valor"));
     }
 
     /**
@@ -46,7 +46,7 @@ class ClienteController extends Controller
         $valor->telefone2=$request->telefone2;
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
-        return response()->json($valor,200);
+       return redirect()->back()->with("sucesso","Cliente cadastrado com sucesso");
     }
 
     /**
@@ -55,33 +55,17 @@ class ClienteController extends Controller
     public function show($id)
     {
         //
-        $valor=Cliente::with(['nome','nbi','telefone1','telefone2','data_nascimento'])->find($id);
-        return response()->json($valor,200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Cliente $cliente)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cliente $cliente)
-    {
-        //
+        $valor=Cliente::find($id);
+        return view("pages.Cliente",compact("valor"));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function apagar($id)
     {
         //
         Cliente::find($id)->delete();
-        return response()->json(['result'=>true],200);
+        return redirect()->back()->with("sucesso","Cliente Apagao com sucesso");
     }
 }
