@@ -14,8 +14,8 @@ class UserController extends Controller
     public function index()
     {
         //
-        $valor=User::all();
-        return view("pages.user",compact("valor"));
+        $user=User::all();
+        return view("pages.user",compact("user"));
     }
 
     /**

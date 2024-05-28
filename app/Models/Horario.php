@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Horario extends Model
 {
     use HasFactory;
+    public function horarios(){
+        return $this->belongsTo(Horario::class);
+    }
 }

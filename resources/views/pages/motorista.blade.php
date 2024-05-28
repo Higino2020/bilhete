@@ -6,7 +6,7 @@
              <div class="card">
                 <div class="card-header d-flex justify-content-between">
                    <div class="header-title">
-                      <h4 class="card-title">Lista de Utilizadores</h4>
+                      <h4 class="card-title">Lista de Motoristas</h4>
                    </div>
                 </div>
                 <div class="card-body">
@@ -16,18 +16,22 @@
                             <tr>
                                <th>Nº</th>
                                <th>Nome</th>
-                               <th>Email</th>
-                               <th>Tipo</th>
+                               <th>Província</th>
+                               <th>Munícipio</th>
+                               <th>Contacto</th>
+                               <th>Data Nascimento</th>
                                <th>Opções</th>
                             </tr>
                          </thead>
                          <tbody>
-                            @foreach ($user as $valor)
+                            @foreach ($motorista as $valor)
                                 <tr>
                                     <td>{{$valor->id}}</td>
-                                    <td>{{$valor->name}}</td>
-                                    <td>{{$valor->email}}</td>
-                                    <td>{{$valor->tipo}}</td>
+                                    <td>{{$valor->nome}}</td>
+                                    <td>{{$valor->provicia}}</td>
+                                    <td>{{$valor->municipio}}</td>
+                                    <td>{{$valor->contacto}}</td>
+                                    <td>{{$valor->data_nascimento}}</td>
                                     <td>
                                         <a href="btn text-primary"><i class="fa fa-edit"></i></a>
                                         <a href="btn text-danger"><i class="fa fa-trash"></i></a>

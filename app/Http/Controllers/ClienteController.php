@@ -14,8 +14,8 @@ class ClienteController extends Controller
     public function index()
     {
         //
-        $valor=Cliente::all();
-        return view("pages.Cliente",compact("valor"));
+        $cliente=Cliente::all();
+        return view("pages.cliente",compact("cliente"));
     }
 
     /**

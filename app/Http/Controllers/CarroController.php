@@ -13,8 +13,8 @@ class CarroController extends Controller
     public function index()
     {
         //
-        $valor=Carro::all();
-        return view("pages.carro",compact("valor"));
+        $carro=Carro::orderBy('numero','ASC')->get();
+        return view("pages.carro",compact("carro"));
 
     }
 

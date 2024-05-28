@@ -1,21 +1,20 @@
-
 <?php
 
 namespace App\Http\Controllers;
 
-use App\Models\Rota;
 use Illuminate\Http\Request;
+use App\Models\Rota;
 
-class RotaController extends Controller
+class RoutaController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
         $rotas=Rota::all();
-        return view("pages.rota",compact("rotas"));
+        return view("pages.rotas",compact("rotas"));
     }
 
     /**
@@ -46,7 +45,7 @@ class RotaController extends Controller
     {
         //
         $valor=Rota::find($id);
-        return view("pages.rota",compact("valor"));
+        return view("pages.rotas",compact("valor"));
     }
     /**
      * Remove the specified resource from storage.

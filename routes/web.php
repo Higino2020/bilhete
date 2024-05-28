@@ -10,7 +10,7 @@ use App\Http\Controllers\{
     HorarioController,
     MotoristaController,
     PendenteController,
-    RotaController,
+    RoutaController,
     UserController,
     ViagenController
 };
@@ -24,7 +24,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('funcio',FuncionarioController::class);
     Route::resource('motorista',MotoristaController::class);
     Route::resource('pendente',PendenteController::class);
-    Route::resource('rota',RotaController::class);
+    Route::resource('rota',RoutaController::class);
     Route::resource('viagem',ViagenController::class);
     Route::resource('horario',HorarioController::class);
     Route::resource('carro',CarroController::class);
