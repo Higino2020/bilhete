@@ -11,14 +11,14 @@
                 </div>
                 <div class="card-body">
                    <div class="table-responsive">
-                      <table id="datatable" class="table data-table table-striped table-bordered" >
+                      <table id="datatable" class=" data-table" >
                          <thead>
                             <tr>
                                <th>Nº</th>
                                <th>Nome</th>
                                <th>Numero do Bilhete de Indentidade</th>
                                <th>Telefone 1 </th>
-                               <th>Telefone 12</th>
+                               <th>Telefone 2</th>
                                <th>Data Nascimento</th>
                                <th>Opções</th>
                             </tr>

@@ -7,11 +7,12 @@
                 <div class="card-header d-flex justify-content-between">
                    <div class="header-title">
                       <h4 class="card-title">Lista de Utilizadores</h4>
+                      <a href=""><i class="fa fa-plus-circle"></i></a>
                    </div>
                 </div>
                 <div class="card-body">
                    <div class="table-responsive">
-                      <table id="datatable" class="table data-table table-striped table-bordered" >
+                      <table id="datatable" class="data-table" >
                          <thead>
                             <tr>
                                <th>Nº</th>
@@ -28,10 +29,10 @@
                                     <td>{{$valor->name}}</td>
                                     <td>{{$valor->email}}</td>
                                     <td>{{$valor->tipo}}</td>
-                                    <td>
+                                    {{-- <td>
                                         <a href="btn text-primary"><i class="fa fa-edit"></i></a>
                                         <a href="btn text-danger"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                          </tbody>

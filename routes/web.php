@@ -21,7 +21,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('user',UserController::class);
     Route::resource('bilhete',BilheteController::class);
     Route::resource('cliente',ClienteController::class);
+    
     Route::resource('funcio',FuncionarioController::class);
+    Route::get('funcio/{id}/apagar',[FuncionarioController::class,'apagar'])->name('funcio.apagar');
+
     Route::resource('motorista',MotoristaController::class);
     Route::resource('pendente',PendenteController::class);
     Route::resource('rota',RoutaController::class);

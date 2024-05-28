@@ -13,8 +13,8 @@ class FuncionarioController extends Controller
     public function index()
     {
         //
-        $valor=Funcionario::all();
-        return view("pages.funcionario",compact("valor"));
+        $funcionario=Funcionario::all();
+        return view("pages.funcionario",compact("funcionario"));
     }
 
     /**

@@ -14,6 +14,7 @@
       <link rel="stylesheet" href="vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
       <link rel="stylesheet" href="vendor/remixicon/fonts/remixicon.css">
       <link rel="stylesheet" href="vendor/@icon/dripicons/dripicons.css">  </head>
+      <link rel="stylesheet" href="css/master.css">
   <body class="email-chimp ">
     <!-- loader Start -->
     <div id="loading">
@@ -57,7 +58,7 @@
                                 <li class="">
                                     <a href="{{route('funcio.index')}}" class="">
                                         <i class="fa fa-briefcase"></i>
-                                        <span class="ml-3">Funcionario</span>
+                                        <span class="ml-3">Funcionário</span>
                                     </a>
                                         <ul id="campaigns" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                         </ul>
@@ -65,7 +66,7 @@
                                 <li class="">
                                     <a href="{{route('cliente.index')}}" class="">
                                         <i class="fa fa-shopping-cart"></i>
-                                        <span class="ml-3">Cleinte</span>
+                                        <span class="ml-3">Cliente</span>
                                     </a>
                                         <ul id="campaigns" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                         </ul>
