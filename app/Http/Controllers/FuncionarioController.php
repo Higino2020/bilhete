@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class FuncionarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        if(Auth::user()->tipo != 'Cliente'){
+            return redirect()->route('funcio.index');
+        }else{
+             return view('pages.cliente.index');
+        }
+    }
     public function index()
     {
-        //
         $funcionario=Funcionario::all();
         return view("pages.funcionario",compact("funcionario"));
     }

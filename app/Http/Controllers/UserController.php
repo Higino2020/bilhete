@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 use User as GlobalUser;
 
 class UserController extends Controller
@@ -11,6 +15,20 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function auth(Request $request){
+        $user = User::where('email', $request->email)->first();
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['As Credencias inseridas estão erradas'],
+            ]);
+        }
+       Auth::login($user,$remember = true);
+       if(Auth::user()->tipo != 'Cliente'){
+           return redirect('/');
+       }else{
+            return view('pages.cliente.index');
+       }
+    }
     public function index()
     {
         //
@@ -57,5 +75,31 @@ class UserController extends Controller
         User::find($id)->delete();
         $sms = "usuario Eliminado com sucesso";
         return redirect()->back()->with("Sucesso",$sms);
+    }
+
+    public function cadastrar(Request $request){
+        $valor=null;
+        $user = null;
+        if (isset($request->id)) {
+            # code...
+            $valor= Cliente::find($request->id);
+        } else {
+            # code...
+            $user = User::cadastrarCliente($request);
+            $valor=new Cliente();
+            $valor->user_id = $user->id;
+        }
+        $valor->nome=$request->nome;
+        $valor->nbi=$request->nbi;
+        $valor->telefone1=$request->telefone1;
+        $valor->telefone2=$request->telefone1;
+        $valor->data_nascimento=$request->data_nascimento;
+        $valor->save();
+        if(User::entrar($request)){
+            return "Login Feito com Sucesso";
+        }else{
+            return redirect()->route('auth.login');
+        }
+      // return redirect()->back()->with("Sucesso","Cliente cadastrado com sucesso");
     }
 }

@@ -25,26 +25,26 @@
                       <table id="datatable" class="data-table table-striped" >
                          <thead>
                             <tr>
-                               <th>1º Motorista</th>
-                               <th>2º Motorista</th>
+                               <th>Motoristas</th>
                                <th>Carro</th>
                                <th>Hora de Embarque</th>
                                <th>Local de Embarque</th>
                                <th>Destino</th>
                                <th>Local de Desembarque</th>
+                               <th>Preço</th>
                                <th>Opções</th>
                             </tr>
                          </thead>
                          <tbody>
                             @foreach ($viagen as $valor)
                                 <tr>
-                                    <td>{{$valor->motorista1->nome}}</td>
-                                    <td>{{$valor->motorista2->nome}}</td>
-                                    <td>{{$valor->carro->numero}} - {{$valor->carro->matricula}}</td>
+                                    <td>1º {{$valor->motorista1->nome}} <br> 2º {{$valor->motorista1->nome}}</td>
+                                    <td>{{$valor->carro->numero}} <br> {{$valor->carro->matricula}}</td>
                                     <td>{{$valor->horario->hora}}</td>
                                     <td>{{$valor->horario->rotas->partida}}</td>
                                     <td>{{$valor->horario->rotas->destino}}</td>
                                     <td>{{$valor->horario->local}}</td>
+                                    <td><b>{{number_format($valor->horario->rotas->preco,2,',',' ')}} Kz</b></td>
                                     <td>
                                        <a href="#Cadastrar" data-toggle="modal" onclick="editar({{$valor}})" class="btn text-primary"><i class="fa fa-edit"></i></a>
                                        <a href="{{route('rota.apagar',$valor->id)}}" class="btn text-danger"><i class="fa fa-trash"></i></a>

@@ -30,7 +30,7 @@
                      <div class="col-lg-6">
                         <h2 class="mb-2">Acesso ao Sistema</h2>
                         <p></p>
-                        <form action="{{route('login')}}" method="POST">
+                        <form action="{{route('user.auth')}}" method="POST">
                            @csrf
                            <div class="row">
                               <div class="col-lg-12">
@@ -48,7 +48,8 @@
                              
                               
                            </div>
-                           <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+                           <button type="submit" class="btn btn-primary btn-lg mb-2" >Entrar</button>
+                           <p>Ainda não possui conta como cliente?<a href="{{route('cliente.create')}}">Cadastrar</a> </p>
                         </form>
                      </div>
                      <div class="col-lg-6 mb-lg-0 mb-4 mt-lg-0 mt-4">

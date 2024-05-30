@@ -78,28 +78,22 @@
                               </div>
                           </div>
                           <div class="form-group">
-                              <label for="nbi">número do Bilhete de Identidade</label>
-                              <div class="form-input">
-                                 <div class="form-input">
+                                <label for="nbi">número do Bilhete de Identidade</label>
+                                <div class="form-input">
                                     <input type="text" maxlength="13" required class="form-control" name="nbi" id="nbi">
                                 </div>
-                              </div>
                           </div>
                           <div class="form-group">
-                              <label for="telefone1">Contacto Principal</label>
-                              <div class="form-input">
-                                 <div class="form-input">
+                                <label for="telefone1">Contacto Principal</label>
+                                <div class="form-input">
                                     <input type="text" required class="form-control" name="telefone1" id="telefone1">
                                 </div>
-                              </div>
                           </div>
                           <div class="form-group">
-                              <label for="telefone2">Contacto Secundario</label>
-                              <div class="form-input">
-                                 <div class="form-input">
+                                <label for="telefone2">Contacto Secundario</label>
+                                <div class="form-input">
                                     <input type="text" class="form-control" name="telefone2" id="telefone2">
                                 </div>
-                              </div>
                           </div>
                           <div class="form-group">
                               <label for="data_nascimento">Data de nascimento</label>

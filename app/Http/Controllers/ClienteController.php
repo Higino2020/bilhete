@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
-use GuzzleHttp\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 class ClienteController extends Controller
 {
@@ -15,18 +15,24 @@ class ClienteController extends Controller
         $cliente=Cliente::all();
         return view("pages.cliente",compact("cliente"));
     }
+    public function create(){
+        return view('auth.cadastrar');
+    }
 
    
     public function store(Request $request)
     {
         //
         $valor=null;
+        $user = null;
         if (isset($request->id)) {
             # code...
             $valor= Cliente::find($request->id);
         } else {
             # code...
+            $user = User::cadastrarCleinte($request);
             $valor=new Cliente();
+            $valor->user_id = $user->id;
         }
         $valor->nome=$request->nome;
         $valor->nbi=$request->nbi;
@@ -34,8 +40,10 @@ class ClienteController extends Controller
         $valor->telefone2=$request->telefone2;
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
-       return redirect()->back()->with("Sucesso","Cliente cadastrado com sucesso");
+      // return redirect()->back()->with("Sucesso","Cliente cadastrado com sucesso");
     }
+
+    
 
     /**
      * Display the specified resource.

@@ -18,13 +18,16 @@ use App\Models\Cliente;
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/', function () {
-        return view('pages.index');
+        if(Auth::user()->tipo != 'Cliente'){
+            return view('pages.index');
+        }else{
+             return view('pages.cliente.index');
+        }
     });
     Route::resource('user',UserController::class);
     Route::get('user/{id}/apagar',[UserController::class,'apagar'])->name('user.apagar');
 
-    Route::resource('cliente',ClienteController::class);
-
+   
     Route::get('cliente/{id}/apagar',[ClienteController::class,'apagar'])->name('cliente.apagar');
     
     Route::resource('funcio',FuncionarioController::class);
@@ -51,8 +54,12 @@ Route::group(['middleware'=>'auth'],function(){
 
 
 });
-
-
+Route::resource('cliente',ClienteController::class);
+Route::post('user/cadastro',[UserController::class,'cadastrar'])->name('user.register');
+Route::post('auth',[UserController::class,'auth'])->name('user.auth');
+Route::get('entrar',function(){
+    return view('auth.login');
+})->name('auth.login');
 Auth::routes();
 
 Route::get('/home', function(){

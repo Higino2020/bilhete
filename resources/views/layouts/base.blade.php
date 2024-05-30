@@ -180,7 +180,8 @@
                                                                       </div>
                                                                       <div class="media-body">
                                                                       <h5 class="mb-0">Meu Perfil</h5>
-                                                                      <p class="mb-0 font-size-14">View personal profile details</p>
+                                                                      <p class="mb-0 font-size-14">{{Auth::user()->name}}</p>
+                                                                      <p class="mb-0 font-size-14">{{Auth::user()->email}}</p>
                                                                       </div>
                                                                   </a>
                                                               </div>
@@ -188,11 +189,15 @@
                                                       
                                                   </div>
       
-                                                  <a class="right-ic btn btn-primary btn-block   position-relative iq-logout" href="../backend/auth-sign-up.html" role="button">
-                                                
-                                                Sair
-                                            </a>
-                                             
+                                                  <a class="right-ic btn btn-primary btn-block   position-relative iq-logout" role="button" href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault();
+                                                                            document.getElementById('logout-form').submit();">
+                                                           Sair
+                                                    </a>
+                    
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                            @csrf
+                                                        </form>
       
                                   </div>
                               </div>
