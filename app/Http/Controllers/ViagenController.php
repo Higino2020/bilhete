@@ -13,8 +13,8 @@ class ViagenController extends Controller
     public function index()
     {
         //
-        $valor=Viagen::all();
-        return view("pages.viagem",compact("valor"));
+        $viagen=Viagen::all();
+        return view("pages.viagen",compact("viagen"));
     }
 
     /**
@@ -35,9 +35,8 @@ class ViagenController extends Controller
         $valor->moto2_id=$request->moto2_id;
         $valor->carro_id=$request->carro_id;
         $valor->horario_id=$request->horario_id;
-        $valor->descricao=$request->descricao;
         $valor->save();
-        return redirect()->back()->with("sucesso","Viagem cadastrado com sucesso");
+        return redirect()->back()->with("Sucesso","Viagem cadastrado com sucesso");
     }
 
     /**
@@ -56,6 +55,6 @@ class ViagenController extends Controller
     {
         //
         Viagen::find($id)->delete();
-        return redirect()->back()->with("sucesso","Viagem apagado com sucesso");
+        return redirect()->back()->with("Sucesso","Viagem apagado com sucesso");
     }
 }

@@ -14,7 +14,27 @@ class RoutaController extends Controller
     {
         //
         $rotas=Rota::all();
-        return view("pages.rotas",compact("rotas"));
+        $pontos=[
+            'Bengo',
+            'Benguela',
+            'Bíe',
+            'Cabinda',
+            'Cunene',
+            'Huíla',
+            'Huambo',
+            'Luanda',
+            'Lunda Norte',
+            'Lunda Sul',
+            'Kuando Kubango',
+            'Kuanza Sul',
+            'Kuanza Norte',
+            'Malange',
+            'Muxico',
+            'Namibe',
+            'Uige',
+            'Zaire'
+        ];
+        return view("pages.rotas",compact("rotas",'pontos'));
     }
 
     /**
@@ -35,7 +55,7 @@ class RoutaController extends Controller
         $valor->destino=$request->destino;
         $valor->preco=$request->preco;
         $valor->save();
-        return redirect()->back()->with("sucesso","Roda cadastrado com sucesso");
+        return redirect()->back()->with("Sucesso","Roda cadastrado com sucesso");
     }
 
     /**
@@ -54,6 +74,6 @@ class RoutaController extends Controller
     {
         //
         Rota::find($id)->delete();
-        return redirect()->back()->with("sucesso","Rota pagado com sucesso");
+        return redirect()->back()->with("Sucesso","Rota eliminado com sucesso");
     }
 }

@@ -43,8 +43,9 @@ class CarroController extends Controller
         $valor->numero=$request->numero;
         $valor->matricula=$request->matricula;
         $valor->lotacao=$request->lotacao;
+        $valor->estado = "Livre";
         $valor->save();
-        return redirect()->back()->with("sucesso","Carro cadastrado com sucesso!");
+        return redirect()->back()->with("Sucesso","Carro cadastrado com sucesso!");
     }
 
     /**
@@ -62,8 +63,7 @@ class CarroController extends Controller
      */
     public function apagar($id)
     {
-        //
         Carro::find($id)->delete();
-       return redirect()->back()->with("sucesso","carro apagado com sucesso");
+        return redirect()->back()->with("Sucesso","carro eliminado com sucesso");
     }
 }

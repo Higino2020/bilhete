@@ -10,6 +10,16 @@
                       <a href=""><i class="fa fa-plus-circle"></i></a>
                    </div>
                 </div>
+                @if(session('Error'))
+                  <div class="alert alert-danger">
+                     <p>{{session('Error')}}</p>
+                  </div>
+               @endif
+               @if(session('Sucesso'))
+                  <div class="alert alert-success">
+                     <p>{{session('Sucesso')}}</p>
+                  </div>
+               @endif
                 <div class="card-body">
                    <div class="table-responsive">
                       <table id="datatable" class="data-table" >
@@ -29,10 +39,9 @@
                                     <td>{{$valor->name}}</td>
                                     <td>{{$valor->email}}</td>
                                     <td>{{$valor->tipo}}</td>
-                                    {{-- <td>
-                                        <a href="btn text-primary"><i class="fa fa-edit"></i></a>
-                                        <a href="btn text-danger"><i class="fa fa-trash"></i></a>
-                                    </td> --}}
+                                    <td>
+                                        <a href="{{route('user.apagar',$valor->id)}}" class="btn text-danger"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                          </tbody>

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public static function cadastrar(Request $request){
+        $nomes = explode(' ',$request->name);
+        $tamanho = sizeof($nomes);
+        $user = new User();
+        $user->name = $request->name;
+        if($tamanho == 1){
+            $user->email = $nomes[0]."@macon.ao";
+        }else{
+            $user->email = $nomes[$tamanho-1].$nomes[0]."@macon.ao";
+        }
+        $user->tipo = "Funcionario";
+        $user->password = bcrypt($nomes[0]."macon2024");
+        $user->save();
+        return $user;
     }
 }

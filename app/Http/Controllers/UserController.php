@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $user=User::all();
+        $user=User::where('tipo','<>','Admin')->get();
         return view("pages.user",compact("user"));
     }
 
@@ -34,11 +34,10 @@ class UserController extends Controller
         }
         $valor->name=$request->name;
         $valor->email=$request->email;
-        $valor->email_verified_at=$request->email_verified_at;
         $valor->tipo=$request->tipo;
-        $valor->password=$request->password;
+        $valor->password=bcrypt($request->password);
         $valor->save();
-        return redirect()->back()->with("sucesso","user cadastrado com sucesso");
+        return redirect()->back()->with("Sucesso","Usuario cadastrado com sucesso");
     }
 
     /**
@@ -55,8 +54,8 @@ class UserController extends Controller
      */
     public function apagar($id)
     {
-        //
         User::find($id)->delete();
-        return redirect()->back()->with("sucesso","user apagao com sucesso");
+        $sms = "usuario Eliminado com sucesso";
+        return redirect()->back()->with("Sucesso",$sms);
     }
 }

@@ -104,7 +104,7 @@
                                         </ul>
                                 </li>
                                 <li class="">
-                                    <a href="{{route('viagem.index')}}" class="">
+                                    <a href="{{route('viagen.index')}}" class="">
                                         <i class="fa fa-suitcase-rolling"></i>
                                         <span class="ml-3">Vigens</span>
                                     </a>
@@ -246,5 +246,11 @@
     
     <!-- app JavaScript -->
     <script src="js/app.js"></script>
+    @stack('js')
+    <script>
+        $(function(){
+          $('.alert').fadeOut(5000)
+        })
+      </script>
   </body>
 </html>

@@ -9,6 +9,6 @@ class Rota extends Model
 {
     use HasFactory;
     public function horarios(){
-        return $this->hasMany(Horario::class);
+        return $this->hasMany(Horario::class,'rota');
     }
 }

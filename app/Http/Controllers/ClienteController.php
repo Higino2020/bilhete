@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-
 class ClienteController extends Controller
 {
     /**
@@ -13,22 +12,11 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
         $cliente=Cliente::all();
         return view("pages.cliente",compact("cliente"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
         //
@@ -46,7 +34,7 @@ class ClienteController extends Controller
         $valor->telefone2=$request->telefone2;
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
-       return redirect()->back()->with("sucesso","Cliente cadastrado com sucesso");
+       return redirect()->back()->with("Sucesso","Cliente cadastrado com sucesso");
     }
 
     /**
@@ -64,8 +52,7 @@ class ClienteController extends Controller
      */
     public function apagar($id)
     {
-        //
         Cliente::find($id)->delete();
-        return redirect()->back()->with("sucesso","Cliente Apagao com sucesso");
+        return redirect()->back()->with("sucesso","Cliente eliminado com sucesso");
     }
 }

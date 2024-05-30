@@ -38,7 +38,7 @@ class MotoristaController extends Controller
         $valor->contacto=$request->contacto;
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
-        return redirect()->back()->with("sucesso","Motorista cadastrado com sucesso");
+        return redirect()->back()->with("Sucesso","Motorista cadastrado com sucesso");
     }
 
     /**
@@ -58,6 +58,6 @@ class MotoristaController extends Controller
     {
         //
         Motorista::find($id)->delete();
-        return redirect()->back()->with("sucesso","Motorista acadastrado com sucesso");
+        return redirect()->back()->with("Sucesso","Motorista acadastrado com sucesso");
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class FuncionarioController extends Controller
 {
@@ -24,18 +25,19 @@ class FuncionarioController extends Controller
     {
         //
         $valor=null;
+        $user = null;
         if (isset($request->id)) {
-            # code...
             $valor= Funcionario::find($request->id);
         } else {
-            # code...
+           $user = User::cadastrar($request);
             $valor= new Funcionario();
+            $valor->user_id=$user->id;
         }
-        $valor->nome=$request->nome;
+        $valor->name=$request->name;
         $valor->genero=$request->genero;
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
-        return redirect()->back()->with("sucesso","Funcionario cadastrado com sucesso");
+        return redirect()->back()->with("Sucesso","Funcionario cadastrado com sucesso");
     }
 
     /**
@@ -54,6 +56,6 @@ class FuncionarioController extends Controller
     {
         //
         Funcionario::find($id)->delete();
-        return redirect()->back()->with("sucesso","Funcionario apagao com sucesso");
+        return redirect()->back()->with("Sucesso","Funcionario eliminado com sucesso");
     }
 }

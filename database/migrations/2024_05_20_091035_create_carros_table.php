@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('numero');
             $table->string('matricula');
             $table->integer('lotacao');
+            $table->string('estado');
             $table->timestamps();
         });
     }

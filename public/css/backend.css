@@ -48,7 +48,7 @@
   --skyblue: #158df7;
   --primary: #393B87;
   --secondary: #6c757d;
-  --success: #FAA2FF;
+  --success: #0fb11c;
   --info: #78B2FF;
   --warning: #FF9D7D;
   --danger: #FFE477;
@@ -3437,13 +3437,13 @@ textarea.form-control {
     color: #202326; }
 
 .alert-success {
-  color: #825485;
-  background-color: #feecff;
-  border-color: #fee5ff; }
+  color: #fff;
+  background-color: #0fb11c;
+  border-color: #0fb11c; }
   .alert-success hr {
-    border-top-color: #fdccff; }
+    border-top-color: #0fb11c; }
   .alert-success .alert-link {
-    color: #634066; }
+    color: #fff; }
 
 .alert-info {
   color: #3e5d85;

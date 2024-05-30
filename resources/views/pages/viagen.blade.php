@@ -6,7 +6,7 @@
              <div class="card">
                 <div class="card-header d-flex justify-content-between">
                    <div class="header-title">
-                      <h4 class="card-title">Lista de Horarios</h4>
+                      <h4 class="card-title">Lista de viagens</h4>
                       <a href="#Cadastrar" onclick="limpar()" data-toggle="modal"><i class="fa fa-plus-circle"></i></a>
                    </div>
                 </div>
@@ -25,7 +25,9 @@
                       <table id="datatable" class="data-table table-striped" >
                          <thead>
                             <tr>
-                               <th>Nº</th>
+                               <th>1º Motorista</th>
+                               <th>2º Motorista</th>
+                               <th>Carro</th>
                                <th>Hora de Embarque</th>
                                <th>Local de Embarque</th>
                                <th>Destino</th>
@@ -34,13 +36,15 @@
                             </tr>
                          </thead>
                          <tbody>
-                            @foreach ($horarios as $valor)
+                            @foreach ($viagen as $valor)
                                 <tr>
-                                    <td>{{$valor->id}}</td>
-                                    <td>{{$valor->hora}}</td>
-                                    <td>{{$valor->rotas->partida}}</td>
-                                    <td>{{$valor->rotas->destino}}</td>
-                                    <td>{{$valor->local}}</td>
+                                    <td>{{$valor->motorista1->nome}}</td>
+                                    <td>{{$valor->motorista2->nome}}</td>
+                                    <td>{{$valor->carro->numero}} - {{$valor->carro->matricula}}</td>
+                                    <td>{{$valor->horario->hora}}</td>
+                                    <td>{{$valor->horario->rotas->partida}}</td>
+                                    <td>{{$valor->horario->rotas->destino}}</td>
+                                    <td>{{$valor->horario->local}}</td>
                                     <td>
                                        <a href="#Cadastrar" data-toggle="modal" onclick="editar({{$valor}})" class="btn text-primary"><i class="fa fa-edit"></i></a>
                                        <a href="{{route('rota.apagar',$valor->id)}}" class="btn text-danger"><i class="fa fa-trash"></i></a>
@@ -60,40 +64,62 @@
       <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
                   <div class="modal-header">
-                          <h5 class="modal-title">Cadastrar Horario</h5>
+                          <h5 class="modal-title">Cadastrar da Viagem</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>
                       </div>
               <div class="modal-body">
                   <div class="container-fluid">
-                     <form action="{{route('horario.store')}}" method="post">
+                     <form action="{{route('viagen.store')}}" method="post">
                       @csrf
                       <input type="hidden" name="id" id="id">
+                                                  
                           <div class="form-group">
-                              <label for="hora">Hora de Embarque</label>
-                              <div class="form-input">
-                                <input type="time" class="form-control" name="hora" id="hora">
-                              </div>
-                          </div>
-                          
-                          <div class="form-group">
-                              <label for="rota">Rota</label>
+                              <label for="moto1_id">Motorista de Inicio</label>
                               <div class="form-input">
                                  <div class="form-input">
-                                    <select required class="form-control" name="rota" id="rota">
-                                       @foreach (App\Models\Rota::all() as $pv)
-                                          <option value="{{$pv->id}}">{{$pv->partida}}-{{$pv->destino}}</option>
+                                    <select required class="form-control" name="moto1_id" id="moto1_id">
+                                       @foreach (App\Models\Motorista::all() as $pv)
+                                          <option value="{{$pv->id}}">{{$pv->nome}}</option>
                                        @endforeach
                                     </select>
                                 </div>
                               </div>
                           </div>
                           <div class="form-group">
-                              <label for="local">Local de Desembarque da Viagem</label>
+                              <label for="moto2_id">Motorista de Fim</label>
                               <div class="form-input">
                                  <div class="form-input">
-                                    <input type="text" required class="form-control" name="local" id="local">
+                                    <select required class="form-control" name="moto2_id" id="moto2_id">
+                                       @foreach (App\Models\Motorista::all() as $pv)
+                                          <option value="{{$pv->id}}">{{$pv->nome}}</option>
+                                       @endforeach
+                                    </select>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="carro_id">Carro</label>
+                              <div class="form-input">
+                                 <div class="form-input">
+                                    <select required class="form-control" name="carro_id" id="carro_id">
+                                       @foreach (App\Models\Carro::all() as $pv)
+                                          <option value="{{$pv->id}}">{{$pv->numero}}-{{$pv->matricula}}</option>
+                                       @endforeach
+                                    </select>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="horario_id">Rota da Viagem</label>
+                              <div class="form-input">
+                                 <div class="form-input">
+                                    <select required class="form-control" name="horario_id" id="horario_id">
+                                       @foreach (App\Models\Horario::all() as $pv)
+                                          <option value="{{$pv->id}}">{{$pv->hora}}-{{$pv->rotas->partida}}-{{$pv->rotas->destino}}-{{$pv->local}}</option>
+                                       @endforeach
+                                    </select>
                                 </div>
                               </div>
                           </div>
@@ -111,15 +137,17 @@
   <script>
       function editar(valor) {
           document.getElementById('id').value = valor.id;
-          document.getElementById('hora').value = valor.hora;
-          document.getElementById('rota').value = valor.rota;
-          document.getElementById('local').value = valor.local;
+          document.getElementById('moto_1').value = valor.moto_1;
+          document.getElementById('moto_2').value = valor.moto_2;
+          document.getElementById('carro_id').value = valor.carro_id;
+          document.getElementById('horario_id').value = valor.horario_id;
       }
       function limpar() {
-          document.getElementById('id').value = "";
-          document.getElementById('hora').value = "";
-          document.getElementById('rota').value = "";
-          document.getElementById('local').value = "";
+        document.getElementById('id').value = ""
+          document.getElementById('moto_1').value ="";
+          document.getElementById('moto_2').value = "";
+          document.getElementById('carro_id').value = "";
+          document.getElementById('horario_id').value = "";
       }
   </script>
 @endsection

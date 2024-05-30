@@ -13,8 +13,8 @@ class HorarioController extends Controller
     public function index()
     {
         //
-        $valor=Horario::all();
-        return view("pages.horario",compact("valor"));
+        $horarios=Horario::all();
+        return view("pages.horario",compact("horarios"));
     }
 
     /**
