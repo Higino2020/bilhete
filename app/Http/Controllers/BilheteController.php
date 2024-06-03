@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bilhete;
+use App\Models\Horario;
+use App\Models\Viagen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Type\Integer;
 
 class BilheteController extends Controller
 {
@@ -39,14 +43,14 @@ class BilheteController extends Controller
             # code...
             $valor= new Bilhete();
         }
-        $valor->cliente_id=$request->cliente_id;
-        $valor->funcionario_id=$request->funcionario_id;
+        $valor->cliente_id=Auth::user()->cliente->id;
+        $valor->funcionario_id=1;
         $valor->viagen_id=$request->viagen_id;
-        $valor->estado=$request->estado;
+        $valor->estado="Activo";
         $valor->descricao=$request->descricao;
         $valor->acento=$request->acento;
         $valor->save();
-        return redirect()->back()->with("sucesso","Bilhete Cadastrado com sucesso");
+        return redirect()->route('client.index');
 
     }
 
@@ -67,5 +71,14 @@ class BilheteController extends Controller
         //
         Bilhete::find($id)->delete();
         return redirect()->back()->with("sucesso","Bilhete Apagado com sucesso");
+    }
+
+    public function ticket($id){
+        $finde = Viagen::find($id);
+        return view('pages.cliente.ticket',compact('finde'));
+    }
+
+    public function acento($id){
+        return view('pages.cliente.acentos',['finde'=>Horario::find($id)]);
     }
 }

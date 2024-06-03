@@ -88,4 +88,8 @@ class User extends Authenticatable
         $tipo = Auth::user()->tipo;
         return $tipo;
     }
+
+    public function cliente(){
+        return $this->hasOne(Cliente::class);
+    }
 }

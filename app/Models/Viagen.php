@@ -20,4 +20,19 @@ class Viagen extends Model
     public function horario(){
         return $this->belongsTo(Horario::class);
     }
+
+    public function validacao($viagen_id,$cliente):bool{
+        $confirm = Bilhete::where('viagen_id',$viagen_id)->where('cliente_id',$cliente)->first();
+        if($confirm==null){
+            return true;
+        }
+        return false;
+    }
+    public function acento($viagen_id, $acento):bool{
+        $confirm = Bilhete::where('viagen_id',$viagen_id)->where('acento',$acento)->first();
+           if($confirm==null){
+                return true;
+           }
+        return false;
+    }
 }

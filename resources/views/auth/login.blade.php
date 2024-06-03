@@ -49,7 +49,7 @@
                               
                            </div>
                            <button type="submit" class="btn btn-primary btn-lg mb-2" >Entrar</button>
-                           <p>Ainda não possui conta como cliente?<a href="{{route('cliente.create')}}">Cadastrar</a> </p>
+                           <p>Ainda não possui conta como cliente?<a href="{{route('form')}}"> Cadastrar</a> </p>
                         </form>
                      </div>
                      <div class="col-lg-6 mb-lg-0 mb-4 mt-lg-0 mt-4">

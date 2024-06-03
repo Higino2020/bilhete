@@ -26,7 +26,7 @@ class UserController extends Controller
        if(Auth::user()->tipo != 'Cliente'){
            return redirect('/');
        }else{
-            return view('pages.cliente.index');
+            return redirect()->route('client.index');
        }
     }
     public function index()
@@ -96,10 +96,14 @@ class UserController extends Controller
         $valor->data_nascimento=$request->data_nascimento;
         $valor->save();
         if(User::entrar($request)){
-            return "Login Feito com Sucesso";
+            return redirect()->route('client.index');
         }else{
             return redirect()->route('auth.login');
         }
       // return redirect()->back()->with("Sucesso","Cliente cadastrado com sucesso");
+    }
+
+    public function register(){
+        
     }
 }

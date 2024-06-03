@@ -18,10 +18,10 @@ use App\Models\Cliente;
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('/', function () {
-        if(Auth::user()->tipo != 'Cliente'){
+        if(Auth::user()->tipo != "Cliente"){
             return view('pages.index');
         }else{
-             return view('pages.cliente.index');
+            return redirect()->route('client.index');
         }
     });
     Route::resource('user',UserController::class);
@@ -49,13 +49,27 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('carro',CarroController::class);
     Route::get('carro/{id}/apagar',[CarroController::class,'apagar'])->name('carro.apagar');
 
-    Route::resource('bilhete',BilheteController::class);
     Route::resource('pendente',PendenteController::class);
-
+    Route::resource('cliente',ClienteController::class);
 
 });
-Route::resource('cliente',ClienteController::class);
+Route::group(['prefix'=>'buy','middleware'=>'auth'],function(){
+    Route::get('/',function(){
+        return view('pages.cliente.index');
+    })->name('client.index');
+
+    Route::get('ticket/{id}',[BilheteController::class,'ticket'])->name('ticket');
+    Route::get('acento/{id}',[BilheteController::class,'acento'])->name('acento');
+    Route::resource('bilhete',BilheteController::class);
+});
+
+
 Route::post('user/cadastro',[UserController::class,'cadastrar'])->name('user.register');
+
+Route::get('cadastrar',function(){
+    return view('auth.cadastrar');
+})->name('form');
+
 Route::post('auth',[UserController::class,'auth'])->name('user.auth');
 Route::get('entrar',function(){
     return view('auth.login');
@@ -63,5 +77,9 @@ Route::get('entrar',function(){
 Auth::routes();
 
 Route::get('/home', function(){
-    return redirect('/');
+    if(Auth::user()->tipo != 'Cliente'){
+        return redirect('/');
+    }else{
+         return redirect()->route('client.index');
+    }
 })->name('home');

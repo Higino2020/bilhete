@@ -15,9 +15,7 @@ class ClienteController extends Controller
         $cliente=Cliente::all();
         return view("pages.cliente",compact("cliente"));
     }
-    public function create(){
-        return view('auth.cadastrar');
-    }
+   
 
    
     public function store(Request $request)
