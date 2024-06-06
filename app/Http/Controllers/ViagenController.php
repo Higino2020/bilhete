@@ -13,7 +13,7 @@ class ViagenController extends Controller
     public function index()
     {
         //
-        $viagen=Viagen::all();
+        $viagen=Viagen::orderBy('created_at','DESC')->get();
         return view("pages.viagen",compact("viagen"));
     }
 

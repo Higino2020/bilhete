@@ -37,7 +37,7 @@
                             @foreach ($horarios as $valor)
                                 <tr>
                                     <td>{{$valor->id}}</td>
-                                    <td>{{$valor->hora}}</td>
+                                    <td>{{Carbon\Carbon::parse($valor->hora)->format('H:i')}}</td>
                                     <td>{{$valor->rotas->partida}}</td>
                                     <td>{{$valor->rotas->destino}}</td>
                                     <td>{{$valor->local}}</td>

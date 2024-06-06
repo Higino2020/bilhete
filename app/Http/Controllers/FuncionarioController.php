@@ -12,14 +12,7 @@ class FuncionarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function __construct()
-    {
-        if(Auth::user()->tipo != 'Cliente'){
-            return redirect()->route('funcio.index');
-        }else{
-             return view('pages.cliente.index');
-        }
-    }
+   
     public function index()
     {
         $funcionario=Funcionario::all();

@@ -20,22 +20,20 @@
                             <p>Nome: <b>{{Auth::user()->name}}</b></p>
                             <p>Partida: <b>{{$finde->horario->rotas->partida}}</b></p>
                             <p>Destino: <b>{{$finde->horario->rotas->destino}} - {{$finde->horario->local}}</b></p>
-                            <p>Preço: <b>{{number_format($finde->horario->rotas->preco,2,',',' ')}} Kz</b></p>
+                            <p>Preço: <b>{{number_format($finde->horario->rotas->preco,0,',',' ')}} Kz</b></p>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Plataforma</th>
                                         <th>Hora</th>
-                                        <th>Acesso</th>
                                         <th>Carro</th>
+                                        <th>Acento</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>---</td>
-                                        <td>{{$finde->horario->hora}}</td>
-                                        <td>---</td>
+                                        <td>{{Carbon\Carbon::parse($finde->horario->hora)->format('H:i')}}</td>
                                         <td>{{$finde->carro->numero}}</td>
+                                        <td>---</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -50,11 +48,11 @@
                     <div class="container-fluid base">
                         <div class="bilhete">
                             <div class="baseTop">
-                                <i class="fa fa-bus"></i><h5>Acentos</h5><i class="fa fa-bus"></i>
+                                <i class="fa fa-bus"></i><h5>Acentos Para Viagem de Hoje</h5><i class="fa fa-bus"></i>
                             </div>
                             <div class="acentos">
                                 <div class="row" id="lugarBase">
-                                    @for ($i =1 ; $i <= 45; $i++)
+                                    @for ($i =1 ; $i <= $finde->carro->lotacao; $i++)
                                         <div class="col-4 col-md-2 col-lg-2 lugarBase" >
                                             @if($finde->acento($finde->id,$i))
                                                 <div class="lugar" >
@@ -82,6 +80,10 @@
                         <input type="hidden" value="{{$finde->id}}" name="viagen_id">
                         <input type="hidden" value="{{Auth::user()->cliente->id}}" name="cliente_id">
                         <input type="hidden" name="acento" id="acento">
+                        <div class="form-group">
+                            <label for="">Data de Viagem</label>
+                            <input type="date" min="{{date("Y-m-d")}}" name="data_viagem" class="form-control">
+                        </div>
                         <div class="form-group">
                             <label for="">Informações sobre o Bilhete (Opcional) </label>
                             <textarea name="descricao" id="descricao" class="form-control" cols="30" rows="3"></textarea>

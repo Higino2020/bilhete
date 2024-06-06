@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('bilhetes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cliente_id')->constrained('clientes')->onDelete('cascade');
-            $table->foreignId('funcionario_id')->constrained('funcionarios')->onDelete('cascade');
+            $table->bigInteger("funcionario_id")->nullable()->unsigned();
+            $table->foreign("funcionario_id")->references('id')->on('funcionarios')->onDelete('cascade');
             $table->foreignId('viagen_id')->constrained('viagens')->onDelete('cascade');
             $table->string('estado');
             $table->string('descricao')->nullable();

@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     UserController,
     ViagenController
 };
+use App\Models\Bilhete;
 use App\Models\Cliente;
 
 Route::group(['middleware'=>'auth'],function(){
@@ -55,12 +56,21 @@ Route::group(['middleware'=>'auth'],function(){
 });
 Route::group(['prefix'=>'buy','middleware'=>'auth'],function(){
     Route::get('/',function(){
+        Bilhete::bilheteActivo();
         return view('pages.cliente.index');
     })->name('client.index');
 
     Route::get('ticket/{id}',[BilheteController::class,'ticket'])->name('ticket');
     Route::get('acento/{id}',[BilheteController::class,'acento'])->name('acento');
     Route::resource('bilhete',BilheteController::class);
+    Route::get('/teste/bilhete',function(){
+        return view('pages.cliente.bilhete');
+    });
+
+
+    Route::get('listaBuy', function () {
+        return view('pages.cliente.listaComprados');
+    })->name('listaC');
 });
 
 

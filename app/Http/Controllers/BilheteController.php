@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Bilhete;
 use App\Models\Horario;
 use App\Models\Viagen;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Ramsey\Uuid\Type\Integer;
 
 class BilheteController extends Controller
 {
@@ -17,8 +17,8 @@ class BilheteController extends Controller
     public function index()
     {
         //
-        $valor=Bilhete::all();
-        return view("pages.bilhete",compact("valor"));
+        $bilhete=Bilhete::orderBy('estado','ASC')->get();
+        return view("pages.bilhetes",compact("bilhete"));
     }
 
     /**
@@ -43,15 +43,28 @@ class BilheteController extends Controller
             # code...
             $valor= new Bilhete();
         }
+        // if(isset($request->funcionario_id)){
+        //     $valor->funcionario_id=$request->funcionario_id;
+        // }
         $valor->cliente_id=Auth::user()->cliente->id;
-        $valor->funcionario_id=1;
         $valor->viagen_id=$request->viagen_id;
+        $valor->funcionario_id = $request->funcionario_id ?? $valor->funcionario_id;
         $valor->estado="Activo";
         $valor->descricao=$request->descricao;
         $valor->acento=$request->acento;
+        $valor->data_viagem=$request->data_viagem;
         $valor->save();
-        return redirect()->route('client.index');
 
+        $data=[
+           'valor' => $valor
+        ];
+         
+        $pdf = PDF::loadView('pages.cliente.bilhete', $data);
+       
+        return $pdf->download('bilhete.pdf');
+       // return redirect()->route('client.index');
+        //dd($valor);
+        //return view('pages.cliente.bilhete',compact("valor"));
     }
 
     /**
