@@ -38,7 +38,7 @@
                                     <td>{{$valor->id}}</td>
                                     <td>{{$valor->partida}}</td>
                                     <td>{{$valor->destino}}</td>
-                                    <td><b>{{ number_format($valor->preco,2,',',' ') }} kz</b></td>
+                                    <td><b>{{ number_format($valor->preco,0,',',' ') }} kz</b></td>
                                     <td>
                                        <a href="#Cadastrar" data-toggle="modal" onclick="editar({{$valor}})" class="btn text-primary"><i class="fa fa-edit"></i></a>
                                        <a href="{{route('rota.apagar',$valor->id)}}" class="btn text-danger"><i class="fa fa-trash"></i></a>

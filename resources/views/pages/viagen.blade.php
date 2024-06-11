@@ -40,11 +40,11 @@
                                 <tr>
                                     <td>1º {{$valor->motorista1->nome}} <br> 2º {{$valor->motorista1->nome}}</td>
                                     <td>{{$valor->carro->numero}} <br> {{$valor->carro->matricula}}</td>
-                                    <td>{{$valor->horario->hora}}</td>
+                                    <td>{{Carbon\Carbon::parse($valor->horario->hora)->format('H:i')}}</td>
                                     <td>{{$valor->horario->rotas->partida}}</td>
                                     <td>{{$valor->horario->rotas->destino}}</td>
                                     <td>{{$valor->horario->local}}</td>
-                                    <td><b>{{number_format($valor->horario->rotas->preco,2,',',' ')}} Kz</b></td>
+                                    <td><b>{{number_format($valor->horario->rotas->preco,0,',',' ')}} Kz</b></td>
                                     <td>
                                        <a href="#Cadastrar" data-toggle="modal" onclick="editar({{$valor}})" class="btn text-primary"><i class="fa fa-edit"></i></a>
                                        <a href="{{route('rota.apagar',$valor->id)}}" class="btn text-danger"><i class="fa fa-trash"></i></a>
@@ -117,7 +117,7 @@
                                  <div class="form-input">
                                     <select required class="form-control" name="horario_id" id="horario_id">
                                        @foreach (App\Models\Horario::all() as $pv)
-                                          <option value="{{$pv->id}}">{{$pv->hora}}-{{$pv->rotas->partida}}-{{$pv->rotas->destino}}-{{$pv->local}}</option>
+                                          <option value="{{$pv->id}}">{{Carbon\Carbon::parse($pv->hora)->format('H:i')}}-{{$pv->rotas->partida}}-{{$pv->rotas->destino}}-{{$pv->local}}</option>
                                        @endforeach
                                     </select>
                                 </div>

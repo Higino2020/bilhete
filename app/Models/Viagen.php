@@ -29,7 +29,7 @@ class Viagen extends Model
         return false;
     }
     public function acento($viagen_id, $acento):bool{
-        $confirm = Bilhete::where('viagen_id',$viagen_id)->where('acento',$acento)->first();
+        $confirm = Bilhete::where('viagen_id',$viagen_id)->where('acento',$acento)->where('data_viagem',date('Y-m-d'))->first();
            if($confirm==null){
                 return true;
            }

@@ -124,7 +124,7 @@
                                 </li>
                                 @else
                                     <li class="">
-                                        <a href="{{route('bilhete.index')}}" class="">
+                                        <a href="{{route('client.index')}}" class="">
                                             <i class="fa fa-ticket-alt"></i>
                                             <span class="ml-3">Bilhetes</span>
                                         </a>
@@ -132,17 +132,9 @@
                                             </ul>
                                     </li>
                                     <li class="">
-                                        <a href="{{route('bilhete.index')}}" class="">
+                                        <a href="{{route('listaC')}}" class="">
                                             <i class="fa fa-ticket-alt"></i>
                                             <span class="ml-3">Bilhetes Comprados</span>
-                                        </a>
-                                            <ul id="campaigns" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
-                                            </ul>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{route('bilhete.index')}}" class="">
-                                            <i class="fa fa-ticket-alt"></i>
-                                            <span class="ml-3">Bilhetes Reservados</span>
                                         </a>
                                             <ul id="campaigns" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                             </ul>
@@ -277,7 +269,7 @@
       
       <!-- app JavaScript -->
       <script src="{{asset('js/app.js')}}"></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     @stack('js')
     <script>
         $(function(){

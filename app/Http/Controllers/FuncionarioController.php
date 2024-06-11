@@ -12,10 +12,14 @@ class FuncionarioController extends Controller
     /**
      * Display a listing of the resource.
      */
+<<<<<<< HEAD
     public function __construct()
     {
       
     }
+=======
+   
+>>>>>>> ef9f21f0eb1a535791310568acc57544c379c792
     public function index()
     {
         $funcionario=Funcionario::all();
