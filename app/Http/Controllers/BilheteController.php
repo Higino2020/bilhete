@@ -44,7 +44,7 @@ class BilheteController extends Controller
             $valor= new Bilhete();
         }
         $valor->cliente_id=Auth::user()->cliente->id;
-        $valor->funcionario_id=1;
+        $valor->funcionario_id=3;
         $valor->viagen_id=$request->viagen_id;
         $valor->estado="Activo";
         $valor->descricao=$request->descricao;

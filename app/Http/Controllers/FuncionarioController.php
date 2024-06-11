@@ -14,11 +14,7 @@ class FuncionarioController extends Controller
      */
     public function __construct()
     {
-        if(Auth::user()->tipo != 'Cliente'){
-            return redirect()->route('funcio.index');
-        }else{
-             return view('pages.cliente.index');
-        }
+      
     }
     public function index()
     {
