@@ -8,7 +8,7 @@
       
       <!-- Favicon -->
       <link rel="stylesheet" href="{{asset('css/master.css')}}">
-      <link rel="shortcut icon" href="{{asset('images/favicon.ico')}}" />
+      <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
       <link rel="stylesheet" href="{{asset('css/backend-plugin.min.css')}}">
       <link rel="stylesheet" href="{{asset('css/backend.css?v=1.0.2')}}">
       <link rel="stylesheet" href="{{asset('vendor/@fortawesome/fontawesome-free/css/all.min.css')}}">
@@ -19,7 +19,7 @@
   <body class="email-chimp ">
     <!-- loader Start -->
     <div id="loading">
-          <div id="loading-center">
+          <div id="loading-center" style="">
           </div>
     </div>
     <!-- loader END -->
@@ -191,7 +191,7 @@
                                               <div class="card-body p-0">
                                                   <div class="profile-header">
                                                               <div class="profile-details">
-                                                                  <a href="#" class="iq-sub-card"> 
+                                                                  <a href="{{route('perfil')}}" class="iq-sub-card"> 
                                                                       <div class="rounded bg-info iq-card-icon-small">
                                                                           <i class="ri-file-user-line"></i>
                                                                       </div>

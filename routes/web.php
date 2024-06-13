@@ -53,6 +53,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('pendente',PendenteController::class);
     Route::resource('cliente',ClienteController::class);
 
+    Route::get('perfil',[UserController::class,'perfil'])->name('perfil');
+
 });
 Route::group(['prefix'=>'buy','middleware'=>'auth'],function(){
     Route::get('/',function(){

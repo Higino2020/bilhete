@@ -103,7 +103,7 @@ class UserController extends Controller
       // return redirect()->back()->with("Sucesso","Cliente cadastrado com sucesso");
     }
 
-    public function register(){
-        
-    }
+   public function perfil(){
+        return view('pages.perfil.perfil');
+   }
 }
