@@ -7,16 +7,13 @@
                 <div class="card-body">
                 <div class="">
                     <div class="">
-                        <h2 class="mb-2">Hi , Wilma Mumduya</h2>
-                        <p class="pb-3">Welcome all your new subscribers. It’s good to have you here!</p>
+                        <h2 class="mb-2">MACON , o seu destino é o nosso objectivo</h2>
+                        <p class="pb-3">SEJA BEM VINDO!</p>
                     </div>
-                    <div class="d-flex flex-wrap align-items-center mt-4">
-                        <a class="btn btn-lg btn-primary mr-3" href="../backend/page-create-templates.html">Create E-mail</a>
-                        <a class="btn btn-lg btn-transparent explore" href="../backend/page-templates.html">Explore All<i class="ri-arrow-right-line ml-2 mt-1"></i></a>
-                    </div>
+
                 </div>
                 <div class="subs-image">
-                    <img src="images/layouts/banner.png" alt="user-image" class="img-fluid">
+                    <img src="images/layouts/LOGO-MACON.png" alt="user-image" class="img-fluid">
                 </div>
                 </div>
             </div>
@@ -25,33 +22,33 @@
             <a href="page-contacts.html" title="">
                 <div class="media iq-option border align-items-center p-3">
                 <div class="bg-success-light rounded p-4">
-                    <img src="images/options/01.png" class="img-fluid avatar-50" alt="image">
+                    <img src="images/user/04.jpg" class="img-fluid avatar-50" alt="image">
                 </div>
                 <div class="media-body">
-                    <h4 class="mb-2">Upload Contacts</h4>
-                    <p class="mb-0">Upload all your records from your current system, and import them into EmailCHIMP.</p>
+                    <h4 class="mb-2">FUNCIONÁRIO</h4>
+                    <p class="mb-0">quantidade de funcionario</p>
                 </div>
                 </div>
             </a>
             <a href="page-create-templates.html" title="">
                 <div class="media iq-option border align-items-center p-3">
                 <div class="bg-danger-light rounded p-4">
-                    <img src="images/options/02.png" class="img-fluid avatar-50" alt="image">
+                    <img src="images/user/macon.jpg" class="img-fluid avatar-50" alt="image">
                 </div>
                 <div class="media-body">
-                    <h4 class="mb-2">Create Template</h4>
-                    <p class="mb-0">Create a page, design it as you like, save it as a template and use for further work.</p>
+                    <h4 class="mb-2">CARROS</h4>
+                    <p class="mb-0">Quantidade de veiculos</p>
                 </div>
                 </div>
             </a>
             <a href="page-campaigns.html" title="">
                 <div class="media iq-option active border align-items-center p-3">
                 <div class="bg-success-light rounded p-4">
-                    <img src="images/options/03.png" class="img-fluid avatar-50" alt="image">
+                    <img src="images/user/user-1.jpg" class="img-fluid avatar-50" alt="image">
                 </div>
                 <div class="media-body">
-                    <h4 class="mb-2">Send campaign</h4>
-                    <p class="mb-0">Create and send your email campaign in literally minutes with a few quick steps.</p>
+                    <h4 class="mb-2">CLIENTES</h4>
+                    <p class="mb-0"> Quantidade clientes.</p>
                 </div>
                 </div>
             </a>
@@ -61,18 +58,18 @@
                     <img src="images/options/04.png" class="img-fluid avatar-50" alt="image">
                 </div>
                 <div class="media-body">
-                    <h4 class="mb-2">Verify domain</h4>
-                    <p class="mb-0">Verify your company's domain to prove that you own all user accounts with that domain.</p>
+                    <h4 class="mb-2">BILHESTES</h4>
+                    <p class="mb-0">Quantidade de bilhetes vendidos.</p>
                 </div>
                 </div>
             </a>
             <a href="page-activity.html" title="">
                 <div class="media iq-option border align-items-center p-3">
                 <div class="bg-warning-light rounded p-4">
-                    <img src="images/options/08.png" class="img-fluid avatar-50" alt="image">
+                    <img src="images/user/12.jpg" class="img-fluid avatar-50" alt="image">
                 </div>
                 <div class="media-body">
-                    <h4 class="mb-2">Get advice</h4>
+                    <h4 class="mb-2">MOTORISTA</h4>
                     <p class="mb-0">Boost your sales and level up your business with our expert overview options.</p>
                 </div>
                 </div>
