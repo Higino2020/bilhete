@@ -85,7 +85,7 @@
                                <p>Nome: <b>{{Auth::user()->cliente->nome}}</b></p>
                                 <p>Partida: <b>{{$valor->viagen->horario->rotas->partida}}</b></p>
                                 <p>Destino: <b>{{$valor->viagen->horario->rotas->destino}} - {{$valor->viagen->horario->local}}</b></p>
-                                <p>Preço: <b>{{number_format($valor->viagen->horario->rotas->preco,0lo,',',' ')}} Kz</b></p>
+                                <p>Preço: <b>{{number_format($valor->viagen->horario->rotas->preco,0,',',' ')}} Kz</b></p>
                                 <table>
                                     <thead>
                                         <tr>

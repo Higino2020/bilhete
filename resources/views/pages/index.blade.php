@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="d-grid grid-cols-2 custom-grid-media">
         <div class="">
-            <div class="card border subs-card">
+            <div class="card border subs-card pb-2">
                 <div class="card-body">
                 <div class="">
                     <div class="">
@@ -26,7 +26,9 @@
                 </div>
                 <div class="media-body">
                     <h4 class="mb-2">FUNCIONÁRIO</h4>
-                    <p class="mb-0">quantidade de funcionario</p>
+                    <p class="mb-0">
+                        {{App\Models\Funcionario::count()}}
+                    </p>
                 </div>
                 </div>
             </a>
@@ -37,7 +39,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="mb-2">CARROS</h4>
-                    <p class="mb-0">Quantidade de veiculos</p>
+                    <p class="mb-0">{{App\Models\Carro::count()}}</p>
                 </div>
                 </div>
             </a>
@@ -48,7 +50,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="mb-2">CLIENTES</h4>
-                    <p class="mb-0"> Quantidade clientes.</p>
+                    <p class="mb-0">{{App\Models\Cliente::count()}}</p>
                 </div>
                 </div>
             </a>
@@ -59,7 +61,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="mb-2">BILHESTES</h4>
-                    <p class="mb-0">Quantidade de bilhetes vendidos.</p>
+                    <p class="mb-0">{{App\Models\Bilhete::count()}}</p>
                 </div>
                 </div>
             </a>
@@ -70,7 +72,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="mb-2">MOTORISTA</h4>
-                    <p class="mb-0">Boost your sales and level up your business with our expert overview options.</p>
+                    <p class="mb-0">{{App\Models\Motorista::count()}}</p>
                 </div>
                 </div>
             </a>
