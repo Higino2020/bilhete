@@ -44,8 +44,24 @@
                         </div> --}}
                     </div>
                 </div>
+             
                 <div class="acentos">
                     <div class="container-fluid base">
+                       
+                      <form action="{{route('bilhete.store')}}" method="post">
+                        @csrf
+                        @if(session('Error'))
+                            <div class="alert" style="background-color: red; color: white">
+                                <p>{{session('Error')}}</p>
+                            </div>
+                        @endif
+                        <input type="hidden" value="{{$finde->id}}" name="viagen_id">
+                        <input type="hidden" value="{{Auth::user()->cliente->id}}" name="cliente_id">
+                        <input type="hidden" name="acento" id="acento">
+                        <div class="form-group">
+                            <label for="">Data de Viagem</label>
+                            <input type="date" min="{{date("Y-m-d")}}" name="data_viagem" class="form-control">
+                        </div>
                         <div class="bilhete">
                             <div class="baseTop">
                                 <i class="fa fa-bus"></i><h5>Acentos Para Viagem de Hoje</h5><i class="fa fa-bus"></i>
@@ -54,15 +70,9 @@
                                 <div class="row" id="lugarBase">
                                     @for ($i =1 ; $i <= $finde->carro->lotacao; $i++)
                                         <div class="col-4 col-md-2 col-lg-2 lugarBase" >
-                                            @if($finde->acento($finde->id,$i))
-                                                <div class="lugar" >
-                                                    {{$i}}
-                                                </div>
-                                            @else
-                                                <div class="lugar-diseble">
-                                                    {{$i}}
-                                                </div>
-                                            @endif
+                                            <div class="lugar" >
+                                                {{$i}}
+                                            </div>
                                         </div>
                                     @endfor
                                 </div>
@@ -70,19 +80,6 @@
                             <div class="musaico">
                                 0
                             </div>  
-                        </div>
-                    </div>    
-                </div>
-                <div class="acentos">
-                    <div class="container-fluid base">
-                      <form action="{{route('bilhete.store')}}" method="post">
-                        @csrf
-                        <input type="hidden" value="{{$finde->id}}" name="viagen_id">
-                        <input type="hidden" value="{{Auth::user()->cliente->id}}" name="cliente_id">
-                        <input type="hidden" name="acento" id="acento">
-                        <div class="form-group">
-                            <label for="">Data de Viagem</label>
-                            <input type="date" min="{{date("Y-m-d")}}" name="data_viagem" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Informações sobre o Bilhete (Opcional) </label>

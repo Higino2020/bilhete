@@ -68,7 +68,6 @@
                                 </li>
                                 @endif
                                 <li class="">
-                                    {{App\Models\F}}
                                     <a href="{{route('cliente.index')}}" class="">
                                         <i class="fa fa-shopping-cart"></i>
                                         <span class="ml-3">Cliente</span>

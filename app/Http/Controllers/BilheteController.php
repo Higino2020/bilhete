@@ -34,7 +34,9 @@ class BilheteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Viagen::acento($request->viagen_id,$request->acento,$request->data_viagem)){
+
+        
         $valor=null;
         if (isset($request->id)) {
             # code...
@@ -62,6 +64,9 @@ class BilheteController extends Controller
         $pdf = PDF::loadView('pages.cliente.bilhete', $data);
        
         return $pdf->download('bilhete.pdf');
+    }else{
+        return redirect()->back()->with('Error','Acesso escolhido já esta ocupado');
+    }
        // return redirect()->route('client.index');
         //dd($valor);
         //return view('pages.cliente.bilhete',compact("valor"));
