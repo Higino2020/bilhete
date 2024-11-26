@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bilhete;
 use App\Models\Horario;
 use App\Models\Viagen;
+use Exception;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -98,5 +99,16 @@ class BilheteController extends Controller
 
     public function acento($id){
         return view('pages.cliente.acentos',['finde'=>Horario::find($id)]);
+    }
+
+    public function comprar(Request $request){
+      try{
+        $tick = Bilhete::find($request->id);
+        $tick->estado = "Desativo";
+        $tick->save();
+        return redirect()->back()->with('Sucesso','Comprar realizada com exito');
+      }catch(Exception $e){
+        return redirect()->back()->with('Erro','Comprar não realizada');
+      }
     }
 }
